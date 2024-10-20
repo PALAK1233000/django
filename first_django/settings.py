@@ -12,21 +12,23 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(_file_).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-z5&&otr7_l8m-+gotgdlo!78r$)kw&!q*c!=@8#an5#y+jlb9*'
-SECRET_KEY=OS.environ.get('SECRET_KEY')
+# SECRET_KEY = 'django-insecure-z5&&otr7_l8m-+gotgdlo!78r$)kw&!q*c!=@8#an5#y+jlb9*'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = OS.environ.get('DEBUG',False).lower()==True
+DEBUG = os.environ.get('DEBUG', False).lower() == True
 
-ALLOWED_ORIGINS=["*"]
+ALLOWED_HOSTS = ["*"]
+
 
 # Application definition
 
@@ -44,10 +46,14 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS=[
-     "http://localhost:3000",
- ]
+    "http://localhost:3000",
+]
 
 #CORS_ALLOWED_ORIGINS=True
+
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,10 +98,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-#DATABASES['default']=dj_database_url.parse('postgresql://django_db_5uec_user:xI3asBjDbkxZOAvZgujKHmyytB1m3GEj@dpg-csaa3iij1k6c73cnekqg-a.singapore-postgres.render.com/django_db_5uec')
-databaseURL=os.environ.get('DATABASE_URL')
-DATABASES[defult]=dj_database_url.parse('DATABASE_usl')
 
+# DATABASES['default'] = dj_database_url.parse('postgresql://django_db_3w5k_user:kuSfTX6klfgGSjAC4kyj09Jw4Obl0BPW@dpg-csaa3gij1k6c73cnek40-a.singapore-postgres.render.com/django_db_3w5k')
+databaseURL = os.environ.get('DATABASE_URL')
+DATABASES['default'] = dj_database_url.parse(databaseURL) 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
